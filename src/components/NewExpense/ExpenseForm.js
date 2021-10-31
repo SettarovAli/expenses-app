@@ -4,7 +4,7 @@ import './ExpenseForm.css';
 
 const ExpenseForm = ({ onSaveExpenseData }) => {
   const [userInput, setUserInput] = useState({
-    enteredTitle: 'Car',
+    enteredTitle: '',
     enteredAmount: '',
     enteredDate: '',
   });
@@ -32,7 +32,12 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    onSaveExpenseData(userInput);
+    const expenseData = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: new Date(userInput.enteredDate),
+    };
+    onSaveExpenseData(expenseData);
     setUserInput((prevState) => ({
       ...prevState,
       enteredTitle: '',
